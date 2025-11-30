@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #FDEFE5;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.newfoundsoftware.pos.SalesInventoryController">
+    
+    <!-- TOP: Header -->
+    <top>
+        <HBox spacing="12" style="-fx-background-color: #92709A; -fx-padding: 12;">
+            <children>
+                <Label text="Sales Inventory" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS" />
+                <TextField fx:id="searchField" prefWidth="300" promptText="Search products..." />
+                <Button fx:id="btnSearch" style="-fx-background-color: pink; -fx-font-weight: bold;" text="Search" />
+            </children>
+        </HBox>
+    </top>
+    
+    <!-- LEFT: Filters -->
+    <left>
+        <VBox prefWidth="200" spacing="10" style="-fx-background-color: #f5f5f5; -fx-padding: 12; -fx-border-color: #ddd; -fx-border-width: 0 1 0 0;">
+            <children>
+                <Label style="-fx-font-weight: bold; -fx-font-size: 14;" text="Filters" />
+                
+                <Label style="-fx-font-weight: bold;" text="Category" />
+                <ComboBox fx:id="categoryFilter" prefWidth="180" promptText="All categories" />
+                
+                <Label style="-fx-font-weight: bold;" text="Stock Level" />
+                <HBox alignment="CENTER_LEFT" spacing="5">
+                    <children>
+                        <CheckBox fx:id="lowStockCheck" text="Low" />
+                        <Label text="(&lt;" />
+                        <Spinner fx:id="lowStockSpinner" editable="true" prefWidth="60" />
+                        <Label text=")" />
+                    </children>
+                </HBox>
+                
+                <Separator />
+                
+                <Button fx:id="btnApplyFilters" maxWidth="Infinity" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;" text="Apply Filters" />
+                <Button fx:id="btnClearFilters" maxWidth="Infinity" style="-fx-background-color: #e0e0e0; -fx-font-weight: bold;" text="Clear Filters" />
+            </children>
+        </VBox>
+    </left>
+    
+    <!-- CENTER: Table -->
+    <center>
+        <VBox spacing="10" style="-fx-padding: 12;">
+            <children>
+                <!-- Action Bar -->
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <children>
+                        <Button fx:id="btnUpdateStock" style="-fx-background-color: pink; -fx-font-weight: bold;" text="Add Stock" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="totalProductsLabel" style="-fx-font-weight: bold;" text="Showing 0 products" />
+                    </children>
+                </HBox>
+                
+                <!-- Table -->
+                <TableView fx:id="productTable" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colId" prefWidth="60" text="ID" />
+                        <TableColumn fx:id="colName" prefWidth="220" text="Product Name" />
+                        <TableColumn fx:id="colCategory" prefWidth="120" text="Category" />
+                        <TableColumn fx:id="colStock" prefWidth="80" text="Stock" />
+                        <TableColumn fx:id="colUnitPrice" prefWidth="100" text="Unit Price" />
+                        <TableColumn fx:id="colStatus" prefWidth="100" text="Status" />
+                    </columns>
+                </TableView>
+                
+                <!-- Pagination -->
+                <HBox alignment="CENTER" />
+            </children>
+        </VBox>
+    </center>
+    
+    <!-- RIGHT: Details Panel -->
+    <right>
+        <VBox prefWidth="280" spacing="12" style="-fx-background-color: #fafafa; -fx-padding: 12; -fx-border-color: #ddd; -fx-border-width: 0 0 0 1;">
+            <children>
+                <!-- Header -->
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <children>
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 14;" text="Product Details" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="btnCloseDetails" style="-fx-background-color: transparent; -fx-text-fill: #666; -fx-font-weight: bold;" text="X" />
+                    </children>
+                </HBox>
+                
+                <Separator />
+                
+                <!-- Image -->
+                <StackPane prefHeight="200" style="-fx-border-color: #ddd; -fx-border-width: 1; -fx-background-color: #f5f5f5;">
+                    <children>
+                        <ImageView fx:id="detailImage" fitHeight="190" fitWidth="240" preserveRatio="true" />
+                        <Label fx:id="noImageLabel" style="-fx-text-fill: #999;" text="No Image Available" />
+                    </children>
+                </StackPane>
+                
+                <!-- Details -->
+                <VBox spacing="8">
+                    <children>
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 11;" text="Product ID:" />
+                        <Label fx:id="detailId" text="-" />
+                        
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 11;" text="Product Name:" />
+                        <Label fx:id="detailName" text="-" wrapText="true" />
+                        
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 11;" text="Category:" />
+                        <Label fx:id="detailCategory" text="-" />
+                        
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 11;" text="Current Stock:" />
+                        <Label fx:id="detailStock" style="-fx-font-size: 16;" text="-" />
+                        
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 11;" text="Unit Price:" />
+                        <Label fx:id="detailUnitPrice" text="-" />
+                        
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 11;" text="Status:" />
+                        <Label fx:id="detailStatus" text="-" />
+                    </children>
+                </VBox>
+                
+                <Region VBox.vgrow="ALWAYS" />
+            </children>
+        </VBox>
+    </right>
+    
+</BorderPane>

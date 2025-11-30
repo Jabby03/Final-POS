@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.newfoundsoftware.pos.LoginController"
+            prefWidth="413" prefHeight="209">
+
+    <!-- Background Image -->
+    <ImageView fitWidth="413" fitHeight="209" pickOnBounds="true" preserveRatio="false">
+        <image>
+            <Image url="@images/login.png"/>
+        </image>
+    </ImageView>
+
+    <!-- Optional semi-transparent overlay for style -->
+    <Pane prefWidth="413" prefHeight="209" style="-fx-background-color: rgba(0,0,0,0.35);" pickOnBounds="false"/>
+
+    <!-- Login Title -->
+    <Label layoutX="180" layoutY="20" text="Login" textFill="WHITE">
+        <font>
+            <Font size="20" name="System Bold"/>
+        </font>
+    </Label>
+
+    <!-- Username Label -->
+    <Label layoutX="74" layoutY="73" text="Username" textFill="WHITE">
+        <font>
+            <Font size="12" name="System Bold"/>
+        </font>
+    </Label>
+
+    <!-- Username TextField -->
+    <TextField fx:id="txtUsername" layoutX="145" layoutY="70" prefWidth="193" prefHeight="25"
+               style="-fx-background-color: rgba(255,255,255,0.3); -fx-text-fill: white; -fx-prompt-text-fill: lightgray;"
+               promptText="Enter username"/>
+
+    <!-- Password Label -->
+    <Label layoutX="74" layoutY="118" text="Password" textFill="WHITE">
+        <font>
+            <Font size="12" name="System Bold"/>
+        </font>
+    </Label>
+
+    <!-- PasswordField -->
+    <PasswordField fx:id="txtPassword" layoutX="145" layoutY="115" prefWidth="193" prefHeight="25"
+                   style="-fx-background-color: rgba(255,255,255,0.3); -fx-text-fill: white; -fx-prompt-text-fill: lightgray;"
+                   promptText="Enter password"/>
+
+    <!-- Login Button -->
+    <Button layoutX="287" layoutY="162" text="Login" opacity="0.85" onAction="#actionLogin"
+            style="-fx-background-color: rgba(255,255,255,0.4); -fx-text-fill: black;"/>
+
+</AnchorPane>

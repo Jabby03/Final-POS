@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="659.0" prefHeight="647.0" prefWidth="862.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.newfoundsoftware.pos.ProductsController">
+   <children>
+      <!-- Top Pink Bar -->
+      <Pane prefHeight="13.0" prefWidth="859.0" style="-fx-background-color: pink;" />
+      
+      <!-- Products Table -->
+      <TableView fx:id="tableProducts" layoutX="245.0" layoutY="85.0" prefHeight="550.0" prefWidth="603.0">
+         <columns>
+            <TableColumn fx:id="colId" prefWidth="50.0" text="ID" />
+            <TableColumn fx:id="colDescription" prefWidth="200.0" text="Description" />
+            <TableColumn fx:id="colPrice" prefWidth="80.0" text="Price" />
+            <TableColumn fx:id="colCategory" prefWidth="100.0" text="Category" />
+            <TableColumn fx:id="colStatus" prefWidth="80.0" text="Status" />
+            <TableColumn fx:id="colBarcode" prefWidth="90.0" text="Barcode" />
+         </columns>
+      </TableView>
+      
+      <!-- Left Form Panel -->
+      <VBox layoutX="14.0" layoutY="33.0" prefHeight="602.0" prefWidth="217.0" spacing="8.0">
+         <children>
+            <!-- Image Display -->
+            <Pane id="imageBox" prefHeight="145.0" prefWidth="214.0" style="-fx-border-color: #ccc; -fx-border-width: 2;">
+               <children>
+                  <ImageView fx:id="ivProduct" fitHeight="145.0" fitWidth="214.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            
+            <!-- ID Field (Read-only) -->
+            <Label text="Product ID (Auto)">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Label>
+            <TextField fx:id="etId" editable="false" prefHeight="30.0" style="-fx-background-color: #f0f0f0;" />
+            
+            <!-- Barcode Field (Read-only) -->
+            <Label text="Product Code">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Label>
+            <TextField fx:id="etBarcode" editable="false" prefHeight="30.0" style="-fx-background-color: #f0f0f0;" />
+            
+            <!-- Description Field (Read-only) -->
+            <Label text="Description">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Label>
+            <TextField fx:id="etDescription" editable="false" prefHeight="30.0" style="-fx-background-color: #f0f0f0;" />
+            
+            <!-- Price Field (Read-only) -->
+            <Label text="Price">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Label>
+            <TextField fx:id="etPrice" editable="false" prefHeight="30.0" style="-fx-background-color: #f0f0f0;" />
+            
+            <!-- Status ComboBox (Editable) -->
+            <Label text="Status (Editable)">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cbStatus" prefHeight="30.0" prefWidth="217.0" />
+            
+            <!-- Info Label -->
+            <Label prefHeight="40.0" prefWidth="217.0" style="-fx-text-fill: #666; -fx-font-size: 10px;" text="💡 Select product from table to view/edit" wrapText="true" />
+            
+                  <!-- Update Button -->
+            <Button fx:id="btnUpdate" disable="true" mnemonicParsing="false" onAction="#editEntry" prefHeight="32.0" prefWidth="306.0" style="-fx-background-color: PINK;" text="Update Status" textFill="#4a4747">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            
+                  <!-- Delete Button -->
+            <Button fx:id="btnDelete" disable="true" mnemonicParsing="false" onAction="#deleteEntry" prefHeight="32.0" prefWidth="232.0" style="-fx-background-color: PINK;" text="Delete" textFill="#4a4747">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

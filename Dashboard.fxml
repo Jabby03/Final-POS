@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<!-- UPDATED: Removed maxHeight, maxWidth, minHeight, minWidth - let it grow naturally -->
+<BorderPane onKeyPressed="#handleKeyPressed" style="-fx-background-color: #FDEFE5;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.newfoundsoftware.pos.DashboardController">
+   <!-- TOP: Menu Bar -->
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#closeApp" text="Close" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Delete" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </top>
+
+   <!-- LEFT: Category Buttons -->
+   <left>
+      <!-- UPDATED: Added minHeight for proper growth behavior -->
+      <VBox minHeight="400.0" spacing="15.0" style="-fx-background-color: ADA4B5;" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+         </padding>
+         <children>
+            <Pane prefHeight="94.0" prefWidth="183.0" style="-fx-background-color: ADA4B5;">
+               <children>
+                  <Label layoutX="30.0" layoutY="14.0" text="WELCOME" textFill="#fff4f4">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblUsername" layoutX="52.0" layoutY="54.0" text="ADMIN" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <!-- Category buttons with fx:ids and onAction for filtering -->
+            <Button fx:id="foundationButton" mnemonicParsing="false" onAction="#filterProducts" prefHeight="32.0" prefWidth="183.0" style="-fx-background-color: PINK;" text="FOUNDATION" textFill="#4a4747">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="Filter products by Foundation" />
+               </tooltip>
+            </Button>
+            <Button fx:id="blushButton" mnemonicParsing="false" onAction="#filterProducts" prefHeight="32.0" prefWidth="183.0" style="-fx-background-color: PINK;" text="BLUSH" textFill="#4a4747">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="Filter products by Blush" />
+               </tooltip>
+            </Button>
+            <Button fx:id="concealerButton" mnemonicParsing="false" onAction="#filterProducts" prefHeight="32.0" prefWidth="183.0" style="-fx-background-color: PINK;" text="CONCEALER" textFill="#4a4747">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="Filter products by Concealer" />
+               </tooltip>
+            </Button>
+            <Button fx:id="lipstickButton" mnemonicParsing="false" onAction="#filterProducts" prefHeight="32.0" prefWidth="183.0" style="-fx-background-color: PINK;" text="LIPSTICK" textFill="#4a4747">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="Filter products by Lipstick" />
+               </tooltip>
+            </Button>
+            <Button fx:id="eyeshadowButton" mnemonicParsing="false" onAction="#filterProducts" prefHeight="32.0" prefWidth="183.0" style="-fx-background-color: PINK;" text="EYESHADOW" textFill="#4a4747">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="Filter products by Eyeshadow" />
+               </tooltip>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+
+   <!-- CENTER: StackPane containing Landing Label and Product Grid -->
+   <center>
+      <!-- UPDATED: Added minWidth and minHeight for proper sizing -->
+      <StackPane minHeight="500.0" minWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="landingLabel" fitHeight="608.0" fitWidth="730.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/landingpage.png" />
+               </image>
+            </ImageView>
+            <!-- Product Grid (9 pre-defined panes with placeholder content; updated dynamically by controller) -->
+            <!-- UPDATED: Added alignment CENTER, improved spacing, proper grow properties -->
+            <GridPane fx:id="productGrid" alignment="CENTER" hgap="20.0" vgap="25.0" visible="false">
+               <padding>
+                  <Insets bottom="20.0" left="30.0" right="20.0" top="30.0" />
+               </padding>
+               <!-- Row 0 -->
+               <!-- UPDATED: Added maxHeight, maxWidth, minHeight, minWidth, hgrow, vgrow for better responsiveness -->
+               <StackPane fx:id="productPane1" maxHeight="200.0" maxWidth="250.0" minHeight="150.0" minWidth="200.0" style="-fx-border-color: black; -fx-border-width: 2px;" GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.vgrow="ALWAYS">
+                  <children>
+                     <ImageView fx:id="imageView1" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#addToOrder" pickOnBounds="true" preserveRatio="true" />
+                     <Label fx:id="priceLabel1" maxWidth="Infinity" style="-fx-background-color: rgba(0,0,0,0.7);" text="₱0.00" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
+                        <font>
+                           <Font name="System Bold Italic" size="12.0" />
+                        </font>
+                        <padding>
+                           <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                        </padding>
+                     </Label>
+                     <Label fx:id="nameLabel1" maxWidth="Infinity" style="-fx-background-color: rgba(220,190,255,0.7);" text="Product 1" textFill="BLACK" StackPane.alignment="TOP_LEFT">
+                        <font>
+                           <Font name="Arial Rounded MT Bold" size="12.0" />
+                        </font>
+                        <padding>
+                           <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                        </padding>
+                     </Label>
+                  </children>
+               </StackPane>
+               <StackPane fx:id="productPane2" maxHeight="200.0" maxWidth="250.0" minHeight="150.0" minWidth="200.0" style="-fx-border-color: black; -fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.vgrow="ALWAYS">
+                  <children>
+                     <ImageView fx:id="imageView2" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#addToOrder" pickOnBounds="true" preserveRatio="true" />
+                     <Label fx:id="priceLabel2" maxWidth="Infinity" style="-fx-background-color: rgba(0,0,0,0.7);" text="₱0.00" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
+                        <font>
+                           <Font name="System Bold Italic" size="12.0" />
+                        </font>
+                        <padding>
+                           <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                        </padding>
+                     </Label>
+                     <Label fx:id="nameLabel2" maxWidth="Infinity" style="-fx-background-color: rgba(220,190,255,0.7);" text="Product 2" textFill="BLACK" StackPane.alignment="TOP_LEFT">
+                        <font>
+                           <Font name="Arial Rounded MT Bold" size="12.0" />
+                        </font>
+                        <padding>
+                           <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                        </padding>
+                     </Label>
+                  </children>
+               </StackPane>
+               <StackPane fx:id="productPane3" maxHeight="200.0" maxWidth="250.0" minHeight="150.0" minWidth="200.0" style="-fx-border-color: black; -fx-border-width: 2px;" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.vgrow="ALWAYS">
+                  <children>
+                     <ImageView fx:id="imageView3" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#addToOrder" pickOnBounds="true" preserveRatio="true" />
+                     <Label fx:id="priceLabel3" maxWidth="Infinity" style="-fx-background-color: rgba(0,0,0,0.7);" text="₱0.00" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
+                        <font>
+                           <Font name="System Bold Italic" size="12.0" />
+                        </font>
+                        <padding>
+                           <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                        </padding>
+                     </Label>
+                     <Label fx:id="nameLabel3" maxWidth="Infinity" style="-fx-background-color: rgba(220,190,255,0.7);" text="Product 3" textFill="BLACK" StackPane.alignment="TOP_LEFT">
+                        <font>
+                           <Font name="Arial Rounded MT Bold" size="12.0" />
+                        </font>
+                        <padding>
+                           <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                        </padding>
+                     </Label>
+                  </children>
+               </StackPane>
+               <!-- Row 1 -->
+               <StackPane fx:id="productPane4" maxHeight="200.0" maxWidth="250.0" minHeight="150.0" minWidth="200.0" style="-fx-border-color: black; -fx-border-width: 2px;" GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                  <children>
+                     <ImageView fx:id="imageView4" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#addToOrder" pickOnBounds="true" preserveRatio="true" />
+                     <Label fx:id="priceLabel4" maxWidth="Infinity" style="-fx-background-color: rgba(0,0,0,0.7);" text="₱0.00" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
+                        <font>
+                           <Font name="System Bold Italic" size="12.0" />
+                        </font>
+                        <padding>
+                           <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                        </padding>
+                     </Label>
+                     <Label fx:id="nameLabel4" maxWidth="Infinity" style="-fx-background-color: rgba(220,190,255,0.7);" text="Product 4" textFill="BLACK" StackPane.alignment="TOP_LEFT">
+                        <font>
+                           <Font name="Arial Rounded MT Bold" size="12.0" />
+                        </font>
+                        <padding>
+                           <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                        </padding>
+                     </Label>
+                  </children>
+               </StackPane>
+               <StackPane fx:id="productPane5" maxHeight="200.0" maxWidth="250.0" minHeight="150.0" minWidth="200.0" style="-fx-border-color: black; -fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                  <children>
+                     <ImageView fx:id="imageView5" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#addToOrder" pickOnBounds="true" preserveRatio="true" />
+                     <Label fx:id="priceLabel5" maxWidth="Infinity" style="-fx-background-color: rgba(0,0,0,0.7);" text="₱0.00" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
+                        <font>
+                           <Font name="System Bold Italic" size="12.0" />
+                        </font>
+                        <padding>
+                           <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                        </padding>
+                     </Label>
+                     <Label fx:id="nameLabel5" maxWidth="Infinity" style="-fx-background-color: rgba(220,190,255,0.7);" text="Product 5" textFill="BLACK" StackPane.alignment="TOP_LEFT">
+                        <font>
+                           <Font name="Arial Rounded MT Bold" size="12.0" />
+                        </font>
+                        <padding>
+                           <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                        </padding>
+                     </Label>
+                  </children>
+               </StackPane>
+               <StackPane fx:id="productPane6" maxHeight="200.0" maxWidth="250.0" minHeight="150.0" minWidth="200.0" style="-fx-border-color: black; -fx-border-width: 2px;" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                  <children>
+                     <ImageView fx:id="imageView6" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#addToOrder" pickOnBounds="true" preserveRatio="true" />
+                     <Label fx:id="priceLabel6" maxWidth="Infinity" style="-fx-background-color: rgba(0,0,0,0.7);" text="₱0.00" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
+                        <font>
+                           <Font name="System Bold Italic" size="12.0" />
+                        </font>
+                        <padding>
+                           <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                        </padding>
+                     </Label>
+                     <Label fx:id="nameLabel6" maxWidth="Infinity" style="-fx-background-color: rgba(220,190,255,0.7);" text="Product 6" textFill="BLACK" StackPane.alignment="TOP_LEFT">
+                        <font>
+                           <Font name="Arial Rounded MT Bold" size="12.0" />
+                        </font>
+                        <padding>
+                           <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                        </padding>
+                     </Label>
+                  </children>
+               </StackPane>
+               <!-- Row 2 -->
+               <StackPane fx:id="productPane7" maxHeight="200.0" maxWidth="250.0" minHeight="150.0" minWidth="200.0" style="-fx-border-color: black; -fx-border-width: 2px;" GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+                  <children>
+                     <ImageView fx:id="imageView7" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#addToOrder" pickOnBounds="true" preserveRatio="true" />
+                     <Label fx:id="priceLabel7" maxWidth="Infinity" style="-fx-background-color: rgba(0,0,0,0.7);" text="₱0.00" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
+                        <font>
+                           <Font name="System Bold Italic" size="12.0" />
+                        </font>
+                        <padding>
+                           <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                        </padding>
+                     </Label>
+                     <Label fx:id="nameLabel7" maxWidth="Infinity" style="-fx-background-color: rgba(220,190,255,0.7);" text="Product 7" textFill="BLACK" StackPane.alignment="TOP_LEFT">
+                        <font>
+                           <Font name="Arial Rounded MT Bold" size="12.0" />
+                        </font>
+                        <padding>
+                           <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                        </padding>
+                     </Label>
+                  </children>
+               </StackPane>
+               <StackPane fx:id="productPane8" maxHeight="200.0" maxWidth="250.0" minHeight="150.0" minWidth="200.0" style="-fx-border-color: black; -fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+                  <children>
+                     <ImageView fx:id="imageView8" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#addToOrder" pickOnBounds="true" preserveRatio="true" />
+                     <Label fx:id="priceLabel8" maxWidth="Infinity" style="-fx-background-color: rgba(0,0,0,0.7);" text="₱0.00" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
+                        <font>
+                           <Font name="System Bold Italic" size="12.0" />
+                        </font>
+                        <padding>
+                           <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                        </padding>
+                     </Label>
+                     <Label fx:id="nameLabel8" maxWidth="Infinity" style="-fx-background-color: rgba(220,190,255,0.7);" text="Product 8" textFill="BLACK" StackPane.alignment="TOP_LEFT">
+                        <font>
+                           <Font name="Arial Rounded MT Bold" size="12.0" />
+                        </font>
+                        <padding>
+                           <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                        </padding>
+                     </Label>
+                  </children>
+               </StackPane>
+               <StackPane fx:id="productPane9" maxHeight="200.0" maxWidth="250.0" minHeight="150.0" minWidth="200.0" style="-fx-border-color: black; -fx-border-width: 2px;" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+                  <children>
+                     <ImageView fx:id="imageView9" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#addToOrder" pickOnBounds="true" preserveRatio="true" />
+                     <Label fx:id="priceLabel9" maxWidth="Infinity" style="-fx-background-color: rgba(0,0,0,0.7);" text="₱0.00" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
+                        <font>
+                           <Font name="System Bold Italic" size="12.0" />
+                        </font>
+                        <padding>
+                           <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                        </padding>
+                     </Label>
+                     <Label fx:id="nameLabel9" maxWidth="Infinity" style="-fx-background-color: rgba(220,190,255,0.7);" text="Product 9" textFill="BLACK" StackPane.alignment="TOP_LEFT">
+                        <font>
+                           <Font name="Arial Rounded MT Bold" size="12.0" />
+                        </font>
+                        <padding>
+                           <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                        </padding>
+                     </Label>
+                  </children>
+               </StackPane>
+               <!-- UPDATED: Added proper column and row constraints with grow properties -->
+               <columnConstraints>
+                  <ColumnConstraints hgrow="ALWAYS" maxWidth="250.0" minWidth="200.0" prefWidth="220.0" />
+                  <ColumnConstraints hgrow="ALWAYS" maxWidth="250.0" minWidth="200.0" prefWidth="220.0" />
+                  <ColumnConstraints hgrow="ALWAYS" maxWidth="250.0" minWidth="200.0" prefWidth="220.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="200.0" minHeight="150.0" prefHeight="170.0" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="200.0" minHeight="150.0" prefHeight="170.0" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="200.0" minHeight="150.0" prefHeight="170.0" vgrow="ALWAYS" />
+               </rowConstraints>
+            </GridPane>
+         </children>
+      </StackPane>
+   </center>
+
+   <!-- RIGHT: Order Table + Grand Total -->
+   <right>
+      <!-- UPDATED: Added minHeight to ensure proper growth -->
+      <VBox minHeight="400.0" minWidth="402.0" spacing="10.0" style="-fx-background-color: pink;" BorderPane.alignment="CENTER">
+         <children>
+            <!-- Grand Total Label -->
+            <Pane prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #92709A;">
+               <children>
+                  <Label fx:id="lblGrandTotal" layoutX="291.0" layoutY="4.0" text="₱0.00" textFill="#094e86">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="17.0" text="TOTAL AMOUNT:" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <!-- Order Table - UPDATED: Added VBox.vgrow="ALWAYS" for proper vertical growth -->
+            <TableView fx:id="orderTable" prefHeight="239.0" prefWidth="403.0" VBox.vgrow="ALWAYS">
+               <columns>
+                  <TableColumn fx:id="colDescription" prefWidth="100.0" text="Description" />
+                  <TableColumn fx:id="colPrice" prefWidth="75.0" text="Price" />
+                  <TableColumn fx:id="colQuantity" prefWidth="75.0" text="Order" />
+                  <TableColumn fx:id="colTotal" prefWidth="75.0" text="Sub Total" />
+               </columns>
+            </TableView>
+            <ImageView fitHeight="291.0" fitWidth="403.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/banners.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+   </right>
+
+   <!-- BOTTOM: Action Buttons -->
+   <bottom>
+      <HBox prefHeight="65.0" spacing="20.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </padding>
+         <children>
+            <Button mnemonicParsing="false" onAction="#newOrder" prefHeight="54.0" prefWidth="170.0" style="-fx-background-color: ADA4B5;" text="[F1 - New Order]">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="Start a new order" />
+               </tooltip>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#payment" prefHeight="54.0" prefWidth="170.0" style="-fx-background-color: pink;" text="[F2 - Payment]">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="Process payment" />
+               </tooltip>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#cancelOrder" prefHeight="54.0" prefWidth="170.0" style="-fx-background-color: pink;" text="[F3 - Cancel Order]">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="Cancel the current order" />
+               </tooltip>
+            </Button>
+            <Button fx:id="btnManageProduct" mnemonicParsing="false" onAction="#actionManageProduct" prefHeight="54.0" prefWidth="170.0" style="-fx-background-color: pink;" text="[F4 - Manage Product]">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="Manage products" />
+               </tooltip>
+            </Button>
+            <Button fx:id="btnSalesInventory" mnemonicParsing="false" onAction="#actionSalesInventory" prefHeight="54.0" prefWidth="170.0" style="-fx-background-color: pink;" text="[F5 - Sales Inventory]">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="Sales Inventory" />
+               </tooltip>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#salesReport" prefHeight="54.0" prefWidth="170.0" style="-fx-background-color: pink;" text="[F6 - Sales Report]">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="View sales report" />
+               </tooltip>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#logout" prefHeight="54.0" prefWidth="170.0" style="-fx-background-color: FF6863;" text="[F7 - Logout]" textFill="#0d0c0c">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="Logout from the system" />
+               </tooltip>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#backToLanding" prefHeight="54.0" prefWidth="170.0" style="-fx-background-color: ADA4B5;" text="[F8 - Back]" textFill="#0d0c0c">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="Return to landing page" />
+               </tooltip>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

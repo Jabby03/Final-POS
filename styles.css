@@ -1,0 +1,16 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Nov 14, 2025, 1:07:20 PM
+    Author     : Administrator
+*/
+
+#imageBox{
+    -fx-border-style: solid;
+    -fx-border-width: 1;
+    -fx-border-color: #ffb6c1; /* light pink */
+    -fx-padding: 0px;
+    -fx-background-color: #fff;
+}

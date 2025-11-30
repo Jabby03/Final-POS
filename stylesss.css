@@ -1,0 +1,32 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Nov 14, 2025, 10:55:35 PM
+    Author     : Administrator
+*/
+
+/* Make AnchorPane background fully visible (image already set) */
+.anchor-pane {
+    -fx-background-image: url("images/background.jpg");
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+}
+
+/* Make TextField and PasswordField transparent */
+.text-field, .password-field {
+    -fx-background-color: rgba(255, 255, 255, 0.3); /* semi-transparent white */
+    -fx-background-radius: 5;
+    -fx-text-fill: black;
+    -fx-prompt-text-fill: white;
+    -fx-border-color: white;
+    -fx-border-radius: 5;
+}
+
+/* Make Button semi-transparent */
+.button {
+    -fx-background-color: rgba(255, 255, 255, 0.4);
+    -fx-text-fill: black;
+    -fx-background-radius: 5;
+}
